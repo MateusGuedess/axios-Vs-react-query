@@ -28,7 +28,7 @@ function WithAxiosComponent() {
   return (
     <div className="App">
       {pokemons.map((item) => (
-        <span key={item?.name}>teste</span>
+        <span key={item?.name}>e</span>
       ))}
     </div>
   );

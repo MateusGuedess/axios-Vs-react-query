@@ -1,12 +1,14 @@
 import "./App.css";
 import WithAxiosComponent from "./withAxiosComponent";
-import WithReactQueryComponent from "./withAxiosComponent";
+import WithGraphQl from "./withGraphQl";
+import WithReactQueryComponent from "./withReactQueryComponent";
 
 function App() {
   return (
     <div>
       {/* <WithAxiosComponent /> */}
-      <WithReactQueryComponent />
+      {/* <WithReactQueryComponent /> */}
+      <WithGraphQl />
     </div>
   );
 }

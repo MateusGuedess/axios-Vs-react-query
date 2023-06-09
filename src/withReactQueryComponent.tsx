@@ -1,5 +1,5 @@
 import { QueryClient, useQuery } from "@tanstack/react-query";
-import axios from "axios";
+import axios from "./api";
 import { useEffect } from "react";
 
 interface Pokemons {
@@ -11,11 +11,9 @@ interface Pokemons {
 
 function WithReactQueryComponent() {
   const { data, isLoading, isError } = useQuery<Pokemons>(
-    ["pokemons"],
+    ["Pokemons"],
     async () => {
-      const response = await axios.get(
-        "https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0"
-      );
+      const response = await axios.get("pokemon?limit=100000&offset=0");
       return response.data;
     }
   );
@@ -35,7 +33,7 @@ function WithReactQueryComponent() {
   return (
     <div>
       {data.results.map((pokemon) => (
-        <span>{pokemon.name}s</span>
+        <span>{pokemon.name}ss</span>
       ))}
     </div>
   );
