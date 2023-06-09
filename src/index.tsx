@@ -4,12 +4,8 @@ import "./index.css";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import {
-  ApolloClient,
-  InMemoryCache,
-  ApolloProvider,
-  gql,
-} from "@apollo/client";
+import { ApolloClient, InMemoryCache, ApolloProvider } from "@apollo/client";
+import { PokemonContextProvider } from "./context/PokemonContext";
 
 const client = new ApolloClient({
   uri: "https://flyby-router-demo.herokuapp.com/",
@@ -24,11 +20,13 @@ const queryClient = new QueryClient();
 
 root.render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <ApolloProvider client={client}>
-        <App />
-      </ApolloProvider>
-    </QueryClientProvider>
+    <PokemonContextProvider>
+      <QueryClientProvider client={queryClient}>
+        <ApolloProvider client={client}>
+          <App />
+        </ApolloProvider>
+      </QueryClientProvider>
+    </PokemonContextProvider>
   </React.StrictMode>
 );
 

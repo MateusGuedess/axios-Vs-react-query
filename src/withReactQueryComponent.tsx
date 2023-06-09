@@ -1,7 +1,7 @@
-import { QueryClient, useQuery } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import axios from "./api";
-import { useEffect } from "react";
-
+import { useContext, useEffect } from "react";
+import { PokemonContext } from "./context/PokemonContext";
 interface Pokemons {
   results: {
     name: string;
@@ -9,7 +9,9 @@ interface Pokemons {
   }[];
 }
 
-function WithReactQueryComponent() {
+function WithReactQueryComponent(): JSX.Element {
+  const { fav, setFavPokemon, removeFavPokemon } = useContext(PokemonContext);
+
   const { data, isLoading, isError } = useQuery<Pokemons>(
     ["Pokemons"],
     async () => {
@@ -19,8 +21,8 @@ function WithReactQueryComponent() {
   );
 
   useEffect(() => {
-    console.log(data);
-  }, []);
+    console.log("FAV: ", fav);
+  }, [fav]);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -32,9 +34,16 @@ function WithReactQueryComponent() {
 
   return (
     <div>
-      {data.results.map((pokemon) => (
-        <span>{pokemon.name}ss</span>
-      ))}
+      {data.results.map((pokemon) => {
+        console.log(fav);
+        // const favPokemon = fav ? fav?.find((item) => item == pokemon ? "FAV") : "";
+        return (
+          <span key={pokemon.url} onClick={() => setFavPokemon(pokemon)}>
+            {pokemon.name}
+            {/* {favPokemon} */}
+          </span>
+        );
+      })}
     </div>
   );
 }

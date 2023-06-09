@@ -7,8 +7,8 @@ function App() {
   return (
     <div>
       {/* <WithAxiosComponent /> */}
-      {/* <WithReactQueryComponent /> */}
-      <WithGraphQl />
+      <WithReactQueryComponent />
+      {/* <WithGraphQl /> */}
     </div>
   );
 }

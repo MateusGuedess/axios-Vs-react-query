@@ -1,5 +1,6 @@
-import React from "react";
 import { useQuery, gql } from "@apollo/client";
+import { useContext } from "react";
+import { PokemonContext } from "./context/PokemonContext";
 
 const GET_LOCATIONS = gql`
   query GetLocations {
@@ -14,6 +15,7 @@ const GET_LOCATIONS = gql`
 
 function WithGraphQl() {
   const { loading, error, data } = useQuery(GET_LOCATIONS);
+  const { setFavPokemon, removeFavPokemon } = useContext(PokemonContext);
 
   if (loading) return <p>Loading...</p>;
   if (error) return <p>Error : {error.message}</p>;
